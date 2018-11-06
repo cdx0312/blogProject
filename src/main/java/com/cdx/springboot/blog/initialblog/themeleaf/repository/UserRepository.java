@@ -1,6 +1,6 @@
-package com.cdx.springboot.blog.initialblog.repository;
+package com.cdx.springboot.blog.initialblog.themeleaf.repository;
 
-import com.cdx.springboot.blog.initialblog.domain.User;
+import com.cdx.springboot.blog.initialblog.themeleaf.domain.User;
 
 import java.util.List;
 

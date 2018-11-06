@@ -1,8 +1,7 @@
-package com.cdx.springboot.blog.initialblog.controller;
+package com.cdx.springboot.blog.initialblog.themeleaf.controller;
 
-import com.cdx.springboot.blog.initialblog.domain.User;
-import com.cdx.springboot.blog.initialblog.repository.UserRepository;
-import com.sun.org.apache.xpath.internal.operations.Mod;
+import com.cdx.springboot.blog.initialblog.themeleaf.domain.User;
+import com.cdx.springboot.blog.initialblog.themeleaf.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.cdx.springboot.blog.initialblog.domain;
+package com.cdx.springboot.blog.initialblog.themeleaf.domain;
 
 /**
  * @program: initialblog

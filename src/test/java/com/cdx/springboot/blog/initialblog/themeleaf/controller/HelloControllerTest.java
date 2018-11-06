@@ -1,4 +1,4 @@
-package com.cdx.springboot.blog.initialblog.controller;
+package com.cdx.springboot.blog.initialblog.themeleaf.controller;
 
 
 import org.junit.Test;
