@@ -1,4 +1,4 @@
-package com.cdx.springboot.blog.initialblog.themeleaf.controller;
+package com.cdx.springboot.blog.initialblog.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

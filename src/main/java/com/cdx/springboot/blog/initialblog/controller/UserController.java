@@ -1,13 +1,15 @@
-package com.cdx.springboot.blog.initialblog.themeleaf.controller;
+package com.cdx.springboot.blog.initialblog.controller;
 
-import com.cdx.springboot.blog.initialblog.themeleaf.domain.User;
-import com.cdx.springboot.blog.initialblog.themeleaf.repository.UserRepository;
+import com.cdx.springboot.blog.initialblog.domain.User;
+import com.cdx.springboot.blog.initialblog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: initialblog
@@ -30,7 +32,11 @@ public class UserController {
      * @return
      */
     private List<User> getUserList() {
-        return userRepository.listUser();
+        List<User> users = new ArrayList<>();
+        for (User user : userRepository.findAll()){
+            users.add(user);
+        }
+        return users;
     }
 
     @GetMapping
@@ -48,7 +54,7 @@ public class UserController {
      */
     @GetMapping("{id}")
     public ModelAndView view(@PathVariable("id") Long id, Model model) {
-        User user = userRepository.getUserById(id);
+        Optional<User> user = userRepository.findById(id);
         model.addAttribute("user", user);
         model.addAttribute("title", "查看用户");
         return new ModelAndView("users/view", "userModel", model);
@@ -61,7 +67,7 @@ public class UserController {
      */
     @GetMapping("/form")
     public ModelAndView createForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new User(null, 0));
         model.addAttribute("title", "创建用户");
         return new ModelAndView("users/form", "userModel", model);
     }
@@ -73,13 +79,13 @@ public class UserController {
      */
     @PostMapping
     public ModelAndView create(User user) {
-        user = userRepository.saveOrUpdateUser(user);
+        user = userRepository.save(user);
         return new ModelAndView("redirect:/users");
     }
 
     @GetMapping(value = "delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id, Model model) {
-        userRepository.deleteUser(id);
+        userRepository.deleteById(id);
         model.addAttribute("userList", getUserList());
         model.addAttribute("title", "删除用户");
         return new ModelAndView("users/list", "userModel", model);
@@ -87,7 +93,7 @@ public class UserController {
 
     @GetMapping(value = "modify/{id}")
     public ModelAndView modifyForm(@PathVariable("id") Long id, Model model) {
-        User user = userRepository.getUserById(id);
+        Optional<User> user = userRepository.findById(id);
         model.addAttribute("user", user);
         model.addAttribute("title", "修改用户");
         return new ModelAndView("users/form", "userModel", model);
